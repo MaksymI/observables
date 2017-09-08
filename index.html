@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Observables</title>
+</head>
+<body>
+    <script src="node_modules/rx/dist/rx.all.js"></script>
+    <script>
+    // var clicks = 0;
+    // document.addEventListener('click', function registrClicks(e) {
+    //     if (clicks < 10) {
+    //         if (e.clientX > window.innerWidth / 2) {
+    //             console.log(e.clientX, e.clientY);
+    //             clicks++;
+    //         }
+    //     } else {
+    //         document.removeEventListener('click', registrClicks);
+    //     }
+    // });
+
+    Rx.Observable.fromEvent(document, 'click')
+        .filter(function(e) {return e.clientX > window.innerWidth / 2; })
+        .take(10)
+        .subscribe(e => console.log(e.clientX, e.clientY));
+    
+    </script>
+    
+</body>
+</html>
